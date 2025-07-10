@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const path = require('path');
 const router = express.Router();
 
 const CLIENT_ID = process.env.CLIENT_ID;
@@ -30,7 +31,7 @@ router.get('/callback', async (req, res) => {
     res.redirect(`/products?access_token=${access_token}&user_id=${user_id}`);
   } catch (error) {
     console.error('Erro ao autenticar com o Mercado Livre:', error.response?.data || error.message);
-    res.status(500).sendFile(require('path').join(__dirname, '../public/error.html'));
+    res.status(500).sendFile(path.join(__dirname, '../public/error.html'));
   }
 });
 
